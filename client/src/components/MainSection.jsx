@@ -1,19 +1,30 @@
 // This contains the routes for the app and additional styling for the app depending on logged in state and path
-import { useEffect } from 'react';
-import { Header, Footer, Sidebar, MobileMenu } from '.';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { Header, Footer, Sidebar, MobileMenu } from ".";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-import { Home, Login, Signup, NoMatch, Dashboard, Characters, Leaderboards, Profile, QuizPage } from '../pages';
+import {
+  Home,
+  Login,
+  Signup,
+  NoMatch,
+  Dashboard,
+  Characters,
+  Leaderboards,
+  Profile,
+  QuizPage,
+} from "../pages";
 
-import Auth from '../utils/auth';
-import { HiraKataKanjiQuiz, VocabQuiz } from '../utils/quizGenerator';
-import { hiraganaData, katakanaData, kanjiData, lessonData } from '../data';
-
+import Auth from "../utils/auth";
+import { HiraKataKanjiQuiz, VocabQuiz } from "../utils/quizGenerator";
+import { hiraganaData, katakanaData, kanjiData, lessonData } from "../data";
+import Quiz from "../components/quiz/Quiz.js";
+import Result from '../components/quiz/Result.js'
 const MainSection = () => {
   const loggedIn = Auth.loggedIn();
   // returns true if locations includes /quiz
-  const quizLocation = useLocation().pathname.includes('/quiz');
-  
+  const quizLocation = useLocation().pathname.includes("/quiz");
+
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -26,48 +37,32 @@ const MainSection = () => {
       {loggedIn && !quizLocation && <Sidebar />}
       <div
         className={`overflow-x-hidden overflow-y-auto flex flex-col ${
-          loggedIn ? (quizLocation ? '' : 'mb-20 sm:mb-0 sm:ms-[88px] xl:ms-[300px]') : ''
+          loggedIn
+            ? quizLocation
+              ? ""
+              : "mb-20 sm:mb-0 sm:ms-[88px] xl:ms-[300px]"
+            : ""
         }`}
       >
         {!loggedIn && <Header />}
         <main>
           <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
-            <Route
-              path="/signup"
-              element={<Signup />}
-            />
-            <Route
-              path="/dashboard"
-              element={<Dashboard />}
-            />
-            <Route
-              path="/characters"
-              element={<Characters />}
-            />
-            <Route
-              path="/leaderboards"
-              element={<Leaderboards />}
-            />
-            <Route
-              path="/profile"
-              element={<Profile />}
-            />
-            <Route path="/quiz">
-              <Route
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/characters" element={<Characters />} />
+            <Route path="/leaderboards" element={<Leaderboards />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/result" element={<Result />} />
+              {/* <Route
                 path="hiragana"
                 element={
                   <QuizPage
                     quiz={
                       new HiraKataKanjiQuiz(
-                        'hiragana',
+                        "hiragana",
                         hiraganaData.basic,
                         hiraganaData.diacritics,
                         hiraganaData.contracted
@@ -82,7 +77,7 @@ const MainSection = () => {
                   <QuizPage
                     quiz={
                       new HiraKataKanjiQuiz(
-                        'katakana',
+                        "katakana",
                         katakanaData.basic,
                         katakanaData.diacritics,
                         katakanaData.contracted
@@ -96,31 +91,33 @@ const MainSection = () => {
                   <Route
                     key={lesson.url}
                     path={lesson.url}
-                    element={<QuizPage quiz={new HiraKataKanjiQuiz('kanji', lesson.kanji)} />}
+                    element={
+                      <QuizPage
+                        quiz={new HiraKataKanjiQuiz("kanji", lesson.kanji)}
+                      />
+                    }
                   />
                 ))}
               </Route>
               <Route path="lessons">
                 {lessonData.map((lesson) => (
-                  <Route
-                    key={lesson.lessonUrl}
-                    path={lesson.lessonUrl}
-                  >
+                  <Route key={lesson.lessonUrl} path={lesson.lessonUrl}>
                     {lesson.lessonUnits.map((unit) => (
                       <Route
                         key={unit.unitUrl}
                         path={unit.unitUrl}
-                        element={<QuizPage quiz={new VocabQuiz(unit.unitUrl, unit.unitContent)} />}
+                        element={
+                          <QuizPage
+                            quiz={new VocabQuiz(unit.unitUrl, unit.unitContent)}
+                          />
+                        }
                       />
                     ))}
                   </Route>
                 ))}
               </Route>
-            </Route>
-            <Route
-              path="*"
-              element={<NoMatch />}
-            />
+            </Route> */}
+            <Route path="*" element={<NoMatch />} />
           </Routes>
         </main>
         {!quizLocation && <Footer />}
