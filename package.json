@@ -1,5 +1,5 @@
 {
-  "name": "japanese-quiz-mern-app",
+  "name": "Trumio-Ascend",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kt946/japanese-quiz-mern-app.git"
+    "url": "git+https://github.com/kt946/Trumio-Ascend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kt946/japanese-quiz-mern-app/issues"
+    "url": "https://github.com/kt946/Trumio-Ascend/issues"
   },
-  "homepage": "https://github.com/kt946/japanese-quiz-mern-app#readme",
+  "homepage": "https://github.com/kt946/Trumio-Ascend#readme",
   "devDependencies": {
     "concurrently": "^8.0.1"
   }
