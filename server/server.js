@@ -3,7 +3,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express'; // import ApolloServer for GraphQL
 import * as dotenv from 'dotenv';
 import path from 'path';
-
+import router from './router/route.js';
 import connectDB from './config/connection.js'; // import connection to MongoDB
 import { typeDefs, resolvers } from './schemas/index.js'; // import typeDefs and resolvers
 import { authMiddleware } from './utils/auth.js'; // import authMiddleware for authentication
@@ -11,7 +11,7 @@ import { authMiddleware } from './utils/auth.js'; // import authMiddleware for a
 dotenv.config(); // Load environment variables from .env file
 
 const PORT = process.env.PORT || 3001;
-
+const uri = process.env.MONGODB_URI;
 // Create a new instance of an Apollo server with the GraphQL schema
 const server = new ApolloServer({
   typeDefs,
@@ -22,7 +22,16 @@ const server = new ApolloServer({
 const app = express(); // Create a new instance of an Express server
 app.use(express.urlencoded({ extended: true })); // This sets up middleware to parse incoming requests with urlencoded payloads
 app.use(express.json()); // This sets up middleware to parse incoming requests with JSON payloads
+app.use('/api',router);
 
+app.get('/',(req,res)=>{
+  try{
+    res.json("Get request");
+  }
+  catch(erro){
+    res.json(error);
+  }
+})
 if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(new URL('../client/dist', import.meta.url).pathname)));
 }
@@ -35,11 +44,13 @@ const startServer = async (typeDefs, resolvers) => {
   try {
     await server.start(); // Start the Apollo server
     server.applyMiddleware({ app }); // integrate our Apollo server with the Express application as middleware
-    connectDB(process.env.MONGODB_URI); // connect to MongoDB
-    app.listen(PORT, () => {
-      console.log(`Server is running on port http://localhost:${PORT}`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    });
+    connectDB(process.env.MONGODB_URI).then(()=>{
+      app.listen(PORT, () => {
+        // console.log(uri);
+        console.log(`Server is running on port http://localhost:${PORT}`);
+        console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+      });
+    }); // connect to MongoDB
   } catch (error) {
     console.log(error);
   }
