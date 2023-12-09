@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import '../styles/Result.css';
+import '../../styles/Result.css';
 import { Link } from 'react-router-dom';
 
 import ResultTable from './ResultTable';

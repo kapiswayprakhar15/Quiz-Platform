@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 /** Custom Hook */
-import { useFetchQestion } from '../hooks/FetchQuestion'
+// import { useFetchQestion } from '../hooks/FetchQuestion'
+import { useFetchQestion } from '../hooks/fetchQuestions'
 import { updateResult } from '../hooks/setResult'
 
 

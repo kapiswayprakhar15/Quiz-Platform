@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setUserId } from '../redux/result_reducer'
-import '../styles/Main.css'
+import '../../styles/Main.css'
 
 export default function Main() {
 
@@ -31,7 +31,7 @@ export default function Main() {
         </form> */}
 
         <div className='start'>
-            <Link className='btn' to={'quiz'} onClick={startQuiz}>Start Quiz</Link>
+            <Link className='btn' to={'/quiz'} onClick={startQuiz}>Start Quiz</Link>
         </div>
 
     </div>

@@ -24,14 +24,14 @@ export async function insertQuestions(req, res){
 }
 
 // /** Delete all Questions */
-// export async function dropQuestions(req, res){
-//    try {
-//         await Questions.deleteMany();
-//         res.json({ msg: "Questions Deleted Successfully...!"});
-//    } catch (error) {
-//         res.json({ error })
-//    }
-// }
+export async function dropQuestions(req, res){
+   try {
+        await Questions.deleteMany();
+        res.json({ msg: "Questions Deleted Successfully...!"});
+   } catch (error) {
+        res.json({ error })
+   }
+}
 
 /** get all result */
 export async function getResult(req, res){

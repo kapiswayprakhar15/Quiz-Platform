@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Questions from './Questions'
 
-import { MoveNextQuestion, MovePrevQuestion } from '../hooks/FetchQuestion';
+// import { MoveNextQuestion, MovePrevQuestion } from '../hooks/FetchQuestion';
+import { MoveNextQuestion, MovePrevQuestion } from '../hooks/fetchQuestions';
 import { PushAnswer } from '../hooks/setResult';
 
 /** redux store import */

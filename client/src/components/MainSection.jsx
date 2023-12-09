@@ -12,14 +12,15 @@ import {
   Characters,
   Leaderboards,
   Profile,
-  QuizPage,
+  QuizPage, 
 } from "../pages";
 
 import Auth from "../utils/auth";
-import { HiraKataKanjiQuiz, VocabQuiz } from "../utils/quizGenerator";
-import { hiraganaData, katakanaData, kanjiData, lessonData } from "../data";
-import Quiz from "../components/quiz/Quiz.js";
-import Result from '../components/quiz/Result.js'
+// import { HiraKataKanjiQuiz, VocabQuiz } from "../utils/quizGenerator";
+// import { hiraganaData, katakanaData, kanjiData, lessonData } from "../data";
+import Quiz from "../components/quiz/Quiz.jsx";
+import Main from "../components/quiz/Main.jsx";
+import Result from '../components/quiz/Result.jsx'
 const MainSection = () => {
   const loggedIn = Auth.loggedIn();
   // returns true if locations includes /quiz
@@ -55,6 +56,7 @@ const MainSection = () => {
             <Route path="/leaderboards" element={<Leaderboards />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/main" element={<Main />} />
             <Route path="/result" element={<Result />} />
               {/* <Route
                 path="hiragana"
