@@ -258,6 +258,14 @@ const QuizPage = ({ quiz }) => {
                 title="Continue"
                 icon={<HiArrowRight className="w-5 h-5" />}
               />
+
+{/* <Button
+                type="button"
+                btnStyle="flex justify-center items-center gap-2 text-white dark:text-slate-800 bg-[#58CC02] hover:bg-[#4CAD02]"
+                onClick={() => history.back()}
+                title="Roadmap"
+                icon={<HiArrowRight className="w-5 h-5" />}
+              /> */}
             </div>
           )}
         </div>

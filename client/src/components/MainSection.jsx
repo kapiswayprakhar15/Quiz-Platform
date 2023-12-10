@@ -1,20 +1,25 @@
 // This contains the routes for the app and additional styling for the app depending on logged in state and path
-import { useEffect } from 'react';
-import { Header, Footer, Sidebar, MobileMenu } from '.';
+import React, { useEffect, useState } from 'react';
+import { Header, Footer, Sidebar, MobileMenu, Roadmap } from '.';
 import { Route, Routes, useLocation } from 'react-router-dom';
-
 import { Home, Login, Signup, NoMatch, Dashboard, Leaderboards, Profile, QuizPage } from '../pages';
-
 import Auth from '../utils/auth';
-import {  VocabQuiz } from '../utils/quizGenerator';
-import {  lessonData } from '../data';
+import { VocabQuiz } from '../utils/quizGenerator';
+import { lessonData } from '../data';
+
+// Define your local data here
+const localroadmapData = [
+  { Skill: 'JS', Roadmap: 'All About Variables', Link: 'https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables' },
+  // Add more data as needed
+];
 
 const MainSection = () => {
   const loggedIn = Auth.loggedIn();
-  // returns true if locations includes /quiz
   const quizLocation = useLocation().pathname.includes('/quiz');
-  
   const { pathname } = useLocation();
+
+  // Use local data instead of fetching from the backend
+  const [roadmapData, setroadmapData] = useState(localroadmapData);
 
   useEffect(() => {
     // Scroll to the top of the page on route change
@@ -32,32 +37,13 @@ const MainSection = () => {
         {!loggedIn && <Header />}
         <main>
           <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
-            <Route
-              path="/signup"
-              element={<Signup />}
-            />
-            <Route
-              path="/dashboard"
-              element={<Dashboard />}
-            />
-            <Route
-              path="/leaderboards"
-              element={<Leaderboards />}
-            />
-            <Route
-              path="/profile"
-              element={<Profile />}
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/leaderboards" element={<Leaderboards />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/quiz">
-
               <Route path="lessons">
                 {lessonData.map((lesson) => (
                   <Route
@@ -76,9 +62,10 @@ const MainSection = () => {
               </Route>
             </Route>
             <Route
-              path="*"
-              element={<NoMatch />}
+              path="/roadmap"
+              element={<Roadmap roadmapData={roadmapData} />}
             />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
         </main>
         {!quizLocation && <Footer />}
