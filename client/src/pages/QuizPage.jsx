@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { HiX } from 'react-icons/hi';
@@ -16,6 +17,7 @@ const QuizPage = ({ quiz }) => {
   if (!Auth.loggedIn()) {
     return <Navigate to="/login" />;
   }
+  // const navigate = useNavigate();
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [questionState, setQuestionState] = useState(null);
@@ -86,6 +88,12 @@ const QuizPage = ({ quiz }) => {
       setQuestionState(null);
     }
   };
+  const gg = () =>{
+    return <Navigate to="/roadmap" />
+
+  }
+  
+  // const navigate = Navigate();
 
   return (
     <div
@@ -258,13 +266,20 @@ const QuizPage = ({ quiz }) => {
                 title="Continue"
                 icon={<HiArrowRight className="w-5 h-5" />}
               />
-              <Button
+              {/* <Link to="/roadmap">       */}
+              
+              <Link to="/roadmap">
+          <Button 
                 type="button"
                 btnStyle="flex justify-center items-center gap-2 text-white dark:text-slate-800 bg-[#58CC02] hover:bg-[#4CAD02]"
-                onClick={() => history.back()}
+                // onClick={()=>gg}
                 title="Roadmap"
+                href="/roadmap"
                 icon={<HiArrowRight className="w-5 h-5" />}
+                
+                
               />
+            </Link>
             </div>
           )}
         </div>

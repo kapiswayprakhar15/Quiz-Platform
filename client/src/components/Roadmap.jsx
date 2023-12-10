@@ -20,8 +20,8 @@ const Roadmap = ({ roadmapData }) => {
 
     const diagram = flowchart.parse(roadmapCode);
     const diagramContainer = document.getElementById('roadmap-container');
-    diagramContainer.innerHTML = '';
-    diagram.drawSVG('roadmap-container');
+    // diagramContainer.innerHTML = '';
+    // diagram.drawSVG('roadmap-container');
   }, [roadmapData]);
 
   return (
