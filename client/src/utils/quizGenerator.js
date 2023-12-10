@@ -50,49 +50,19 @@ class QuizGenerator {
    * @param {string} answerType - The type of answer ('romaji', 'readings', 'meanings', or defaulting to 'character').
    * @returns {Array} - A shuffled array containing the correct answer and three random choices.
    */
-  generateAnswerOptions(correctAnswer, answerType) {
-    // add correct answer to array
-    const choices = [correctAnswer];
+  generateAnswerOptions(options, answerType) {
+    return options.map(option => option.text);
+  }
 
-    // while loop to generate 3 random choices, must not include the correct answer, duplicate choices, or null values
-    while (choices.length < 4) {
-      // choose random item from selected data array
-      const randomItem = this.selectedDataArray[Math.floor(Math.random() * this.selectedDataArray.length)];
-      let randomChoice;
+  generatecorrect(options){
+    const correctOption = options.find(option => option.isCorrect);
 
-      // match answer type to choice type
-      switch (answerType) {
-        case 'romaji':
-          randomChoice = randomItem.romaji;
-          break;
-        case 'readings':
-          randomChoice = randomItem.readings;
-          break;
-        case 'meanings':
-          randomChoice = randomItem.meanings;
-          break;
-        default:
-          randomChoice = randomItem.character;
-      }
-
-      // add choice to array if it is not null and not already in array
-      if (randomChoice && !choices.includes(randomChoice)) {
-        choices.push(randomChoice);
-      }
-    }
-
-    // shuffle choices
-    for (let i = choices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [choices[i], choices[j]] = [choices[j], choices[i]];
-    }
-
-    return choices;
+  return correctOption;
   }
 
   // increment progress and check if complete
   incrementProgress() {
-    this.progress += 6.25;
+    this.progress += 20;
     if (this.progress >= 100) {
       this.progress = 100;
       this.endQuiz();
@@ -158,71 +128,15 @@ class QuizGenerator {
     let questionDirection, questionSubject, answer, choices;
 
     // question directions
-    const characterQuestion = 'Select the correct character(s) for';
-    const oneCharacterQuestion = 'Select the correct character for';
-    const readingQuestion = 'Select the correct reading(s) for';
-    const meaningQuestion = 'Select the correct meaning(s) for';
+    const characterQuestion = '';
+    
 
-    // switch statement to generate question object values based on question type
-    switch (questionType) {
-      case 'RomajiToCharacter':
-        // Choose the correct characters from romaji
+   
         questionDirection = characterQuestion;
-        questionSubject = randomQuestion.romaji;
-        answer = randomQuestion.character;
-        choices = this.generateAnswerOptions(answer, 'character');
-        break;
-      case 'CharacterToRomaji':
-        // Choose the correct romaji from characters
-        questionDirection = characterQuestion;
-        questionSubject = randomQuestion.character;
-        answer = randomQuestion.romaji;
-        choices = this.generateAnswerOptions(answer, 'romaji');
-        break;
-      case 'CharacterToMeaning':
-        // Choose the correct meanings from characters
-        questionDirection = meaningQuestion;
-        questionSubject = randomQuestion.character;
-        answer = randomQuestion.meanings;
-        choices = this.generateAnswerOptions(answer, 'meanings');
-        break;
-      case 'MeaningToCharacter':
-        // Choose the correct characters from meanings
-        questionDirection = characterQuestion;
-        questionSubject = randomQuestion.meanings;
-        answer = randomQuestion.character;
-        choices = this.generateAnswerOptions(answer, 'character');
-        break;
-      case 'CharacterToReading':
-        // Choose the correct readings from characters
-        questionDirection = readingQuestion;
-        questionSubject = randomQuestion.character;
-        answer = randomQuestion.readings;
-        choices = this.generateAnswerOptions(answer, 'readings');
-        break;
-      case 'ReadingToCharacter':
-        // Choose the correct characters from readings
-        questionDirection = characterQuestion;
-        questionSubject = randomQuestion.readings;
-        answer = randomQuestion.character;
-        choices = this.generateAnswerOptions(answer, 'character');
-        break;
-      case 'ReadingToOneCharacter':
-        // Choose the correct character from readings
-        questionDirection = oneCharacterQuestion;
-        questionSubject = randomQuestion.readings;
-        answer = randomQuestion.character;
-        choices = this.generateAnswerOptions(answer, 'character');
-        break;
-      default:
-        // MeaningToOneCharacter
-        // Choose the correct character from meanings
-        questionDirection = oneCharacterQuestion;
-        questionSubject = randomQuestion.meanings;
-        answer = randomQuestion.character;
-        choices = this.generateAnswerOptions(answer, 'character');
-    }
-
+        questionSubject = randomQuestion.question;
+        answer = this.generatecorrect(randomQuestion.options);
+        choices = this.generateAnswerOptions(randomQuestion.options, 'character');
+       
     // return question object
     return { questionDirection, questionSubject, answer, choices };
   }

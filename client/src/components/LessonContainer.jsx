@@ -19,7 +19,7 @@ const LessonContainer = ({ lesson }) => {
           {lesson.lessonUnits.map((unit) => (
             <li key={unit.unitUrl}>
               <Link
-                to={`/main`}
+                to={`/quiz/lessons/${lesson.lessonUrl}/${unit.unitUrl}`}
                 className="exercise-style"
               >
                 {unit.unitTitle}

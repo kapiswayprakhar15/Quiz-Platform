@@ -1,5 +1,4 @@
 import { HiOutlineHome, HiOutlineUserCircle } from 'react-icons/hi';
-import { IoLanguage } from 'react-icons/io5';
 import { MdOutlineLeaderboard } from 'react-icons/md';
 import { FaGithub } from 'react-icons/fa';
 
@@ -9,11 +8,6 @@ const sidebarNavItems = [
     path: '/dashboard',
     icon: <HiOutlineHome className="sidebar-btn-icon" />,
   },
-  // {
-  //   title: 'Characters',
-  //   path: '/characters',
-  //   icon: <IoLanguage className="sidebar-btn-icon" />,
-  // },
   {
     title: 'Leaderboards',
     path: '/leaderboards',
@@ -35,9 +29,6 @@ const socialLinks = [
 ];
 
 const charBannerText = {
-  Hiragana: 'Master Japanese with the basics',
-  Katakana: 'Practice essential characters for loanwords',
-  Kanji: 'Take your mastery to the next level',
 };
 
 export { sidebarNavItems, socialLinks, charBannerText };

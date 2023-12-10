@@ -6,8 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { TOGGLE_DARKMODE } from '../features/darkMode/darkModeSlice';
 
 import logo from '../assets/TrumioLogo.png';
-import logoText from '../assets/SakuraStudyTextBlack.svg';
-import logoTextDarkMode from '../assets/SakuraStudyTextWhite.svg';
 import { sidebarNavItems } from '../constants/constants';
 import { FiLogOut } from 'react-icons/fi';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
@@ -33,20 +31,6 @@ const Sidebar = () => {
           alt="Logo"
           className="w-30 h-10"
         />
-        {/* Show dark mode logo if dark mode is enabled
-        {darkMode ? (
-          <img
-            src={logoTextDarkMode}
-            alt="Sakura Study Text Logo"
-            className="w-auto h-6 sidebar-text"
-          />
-        ) : (
-          <img
-            src={logoText}
-            alt="Sakura Study Text Logo"
-            className="w-auto h-6 sidebar-text"
-          />
-        )} */}
       </NavLink>
 
       {/* Navigation Links */}

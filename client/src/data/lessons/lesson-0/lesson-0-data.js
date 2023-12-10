@@ -5,211 +5,164 @@ const lesson_0_data = {
   lessonUrl: 'Skill-1',
   lessonUnits: [
     {
-      unitTitle: 'Greetings',
-      unitUrl: 'greetings',
+      unitTitle: 'MCQ',
+      unitUrl: 'MCQ',
       unitContent: [
         // { character: '', meanings: '' },
         {
-          character: 'おはよう。',
-          meanings: 'Good morning.',
+          question: 'Which array method is used to add elements to the end of an array?',
+          options: [
+            { text: 'push()', isCorrect: true },
+            { text: 'pop()', isCorrect: false },
+            { text: 'shift()', isCorrect: false },
+            { text: 'unshift()', isCorrect: false },
+          ],
         },
         {
-          character: 'おはようございます。',
-          meanings: 'Good morning. (polite)',
+          question: 'Which of the following is a correct way to declare a JavaScript object?',
+          options: [
+            { text: 'const obj = ();', isCorrect: false },
+            { text: 'let obj = {};', isCorrect: true },
+            { text: 'var obj = [];', isCorrect: false },
+            { text: 'const obj = [];', isCorrect: false },
+          ],
         },
         {
-          character: 'こんにちは。',
-          meanings: 'Good afternoon.',
+          question: 'What does the "=== " operator do in JavaScript?',
+          options: [
+            { text: 'Checks for equality and type', isCorrect: true },
+            { text: 'Checks for equality only', isCorrect: false },
+            { text: 'Checks for type only', isCorrect: false },
+            { text: 'Assigns a value', isCorrect: false },
+          ],
         },
         {
-          character: 'こんばんは。',
-          meanings: 'Good evening.',
+          question: 'How do you properly comment a single line of JavaScript code?',
+          options: [
+            { text: '// This is a comment', isCorrect: true },
+            { text: '/* This is a comment */', isCorrect: false },
+            { text: '# This is a comment', isCorrect: false },
+            { text: '-- This is a comment', isCorrect: false },
+          ],
         },
         {
-          character: 'さようなら。',
-          meanings: 'Goodbye.',
+          question: 'What is the purpose of the "let" keyword in JavaScript?',
+          options: [
+            { text: 'Declares a constant variable', isCorrect: false },
+            { text: 'Declares a block-scoped variable', isCorrect: true },
+            { text: 'Declares a global variable', isCorrect: false },
+            { text: 'Declares a function', isCorrect: false },
+          ],
         },
         {
-          character: 'おやすみ (なさい)。',
-          meanings: 'Good night. (polite)',
+          question: 'Which event is triggered when a user clicks on an HTML element?',
+          options: [
+            { text: 'onhover', isCorrect: false },
+            { text: 'onload', isCorrect: false },
+            { text: 'onclick', isCorrect: true },
+            { text: 'onchange', isCorrect: false },
+          ],
         },
         {
-          character: 'ありがとう。',
-          meanings: 'Thank you.',
+          question: 'What does the "typeof" operator return for an array?',
+          options: [
+            { text: 'array', isCorrect: false },
+            { text: 'object', isCorrect: true },
+            { text: 'string', isCorrect: false },
+            { text: 'number', isCorrect: false },
+          ],
         },
         {
-          character: 'ありがとうございます。',
-          meanings: 'Thank you. (polite)',
-        },
-        {
-          character: 'すみません。',
-          meanings: "Excuse me.; I'm sorry.",
-        },
-        {
-          character: 'いいえ。',
-          meanings: 'No.; Not at all.',
-        },
-        {
-          character: 'いってきます。',
-          meanings: "I'll go and come back.",
-        },
-        {
-          character: 'いってらっしゃい。',
-          meanings: 'Please go and come back.',
-        },
-        {
-          character: 'ただいま。',
-          meanings: "I'm home.",
-        },
-        {
-          character: 'おかえりなさい。',
-          meanings: 'Welcome home.',
-        },
-        {
-          character: 'いただきます。',
-          meanings: 'Thank you for the meal. (before eating)',
-        },
-        {
-          character: 'ごちそうさま(でした)。',
-          meanings: 'Thank you for the meal. (after eating)',
-        },
-        {
-          character: 'はじめまして。',
-          meanings: 'How do you do?',
-        },
-        {
-          character: '~です',
-          meanings: 'I am...',
-        },
-        {
-          character: 'よろしくおねがいします。',
-          meanings: 'Nice to meet you.',
+          question: 'How can you convert a string to a number in JavaScript?',
+          options: [
+            { text: 'parseInt()', isCorrect: true },
+            { text: 'stringToNumber()', isCorrect: false },
+            { text: 'Number()', isCorrect: false },
+            { text: 'convertToNumber()', isCorrect: false },
+          ],
         },
       ],
-    },
-    {
-      unitTitle: 'Numbers',
-      unitUrl: 'numbers',
+    },{
+      unitTitle: 'CODING',
+      unitUrl: 'CODING',
       unitContent: [
+        // { character: '', meanings: '' },
         {
-          character: 'ぜろ/れい',
-          meanings: '0',
+          question: 'Which array method is used to add elements to the end of an array?',
+          options: [
+            { text: 'push()', isCorrect: true },
+            { text: 'pop()', isCorrect: false },
+            { text: 'shift()', isCorrect: false },
+            { text: 'unshift()', isCorrect: false },
+          ],
         },
         {
-          character: 'いち',
-          meanings: '1',
+          question: 'Which of the following is a correct way to declare a JavaScript object?',
+          options: [
+            { text: 'const obj = ();', isCorrect: false },
+            { text: 'let obj = {};', isCorrect: true },
+            { text: 'var obj = [];', isCorrect: false },
+            { text: 'const obj = [];', isCorrect: false },
+          ],
         },
         {
-          character: 'に',
-          meanings: '2',
+          question: 'What does the "=== " operator do in JavaScript?',
+          options: [
+            { text: 'Checks for equality and type', isCorrect: true },
+            { text: 'Checks for equality only', isCorrect: false },
+            { text: 'Checks for type only', isCorrect: false },
+            { text: 'Assigns a value', isCorrect: false },
+          ],
         },
         {
-          character: 'さん',
-          meanings: '3',
+          question: 'How do you properly comment a single line of JavaScript code?',
+          options: [
+            { text: '// This is a comment', isCorrect: true },
+            { text: '/* This is a comment */', isCorrect: false },
+            { text: '# This is a comment', isCorrect: false },
+            { text: '-- This is a comment', isCorrect: false },
+          ],
         },
         {
-          character: 'よん/し/(よ)',
-          meanings: '4',
+          question: 'What is the purpose of the "let" keyword in JavaScript?',
+          options: [
+            { text: 'Declares a constant variable', isCorrect: false },
+            { text: 'Declares a block-scoped variable', isCorrect: true },
+            { text: 'Declares a global variable', isCorrect: false },
+            { text: 'Declares a function', isCorrect: false },
+          ],
         },
         {
-          character: 'ご',
-          meanings: '5',
+          question: 'Which event is triggered when a user clicks on an HTML element?',
+          options: [
+            { text: 'onhover', isCorrect: false },
+            { text: 'onload', isCorrect: false },
+            { text: 'onclick', isCorrect: true },
+            { text: 'onchange', isCorrect: false },
+          ],
         },
         {
-          character: 'ろく',
-          meanings: '6',
+          question: 'What does the "typeof" operator return for an array?',
+          options: [
+            { text: 'array', isCorrect: false },
+            { text: 'object', isCorrect: true },
+            { text: 'string', isCorrect: false },
+            { text: 'number', isCorrect: false },
+          ],
         },
         {
-          character: 'なな/しち',
-          meanings: '7',
-        },
-
-        {
-          character: 'はち',
-          meanings: '8',
-        },
-        {
-          character: 'きゅう/く',
-          meanings: '9',
-        },
-        {
-          character: 'じゅう',
-          meanings: '10',
-        },
-        {
-          character: 'じゅういち',
-          meanings: '11',
-        },
-        {
-          character: 'じゅうに',
-          meanings: '12',
-        },
-        {
-          character: 'じゅうさん',
-          meanings: '13',
-        },
-        {
-          character: 'じゅうよん/じゅうし',
-          meanings: '14',
-        },
-        {
-          character: 'じゅうご',
-          meanings: '15',
-        },
-        {
-          character: 'じゅうろく',
-          meanings: '16',
-        },
-        {
-          character: 'じゅうなな/じゅうしち',
-          meanings: '17',
-        },
-        {
-          character: 'じゅうはち',
-          meanings: '18',
-        },
-        {
-          character: 'じゅうきゅう/じゅうく',
-          meanings: '19',
-        },
-        {
-          character: 'にじゅう',
-          meanings: '20',
-        },
-        {
-          character: 'さんじゅう',
-          meanings: '30',
-        },
-        {
-          character: 'よんじゅう',
-          meanings: '40',
-        },
-        {
-          character: 'ごじゅう',
-          meanings: '50',
-        },
-        {
-          character: 'ろくじゅう',
-          meanings: '60',
-        },
-        {
-          character: 'ななじゅう',
-          meanings: '70',
-        },
-        {
-          character: 'はちじゅう',
-          meanings: '80',
-        },
-        {
-          character: 'きゅうじゅう',
-          meanings: '90',
-        },
-        {
-          character: 'ひゃく',
-          meanings: '100',
+          question: 'How can you convert a string to a number in JavaScript?',
+          options: [
+            { text: 'parseInt()', isCorrect: true },
+            { text: 'stringToNumber()', isCorrect: false },
+            { text: 'Number()', isCorrect: false },
+            { text: 'convertToNumber()', isCorrect: false },
+          ],
         },
       ],
     },
+    
+   ,
   ],
 };
 

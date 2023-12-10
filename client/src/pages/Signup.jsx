@@ -73,7 +73,7 @@ const Signup = () => {
       >
         <img
           src={logo}
-          alt="Sakura Study Logo"
+          alt="Logo"
           className="w-30 h-12 mx-auto mb-2"
         />
         <h1 className="text-2xl font-bold mb-6 text-center">Sign up</h1>

@@ -5,14 +5,13 @@ import { HiX } from 'react-icons/hi';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { BsFillSkipForwardFill, BsArrowClockwise } from 'react-icons/bs';
 import { HiCheck, HiArrowRight } from 'react-icons/hi';
-
+import QuizMainContent from './QuizMainContent';
 import { FeedbackMessage, Button } from '../components';
 import { CompleteScreen } from './';
-
 import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_EXPERIENCE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
-
+import { useEffect } from 'react';
 const QuizPage = ({ quiz }) => {
   if (!Auth.loggedIn()) {
     return <Navigate to="/login" />;
@@ -23,17 +22,25 @@ const QuizPage = ({ quiz }) => {
   const [question, setQuestion] = useState(quiz.generateQuestion());
   const [quizComplete, setQuizComplete] = useState(false);
   const progress = quiz.getProgress();
+  const [isMCQUnit, setIsMCQUnit] = useState(false);
+  const [isCodingUnit, setIsCodingUnit] = useState(false);
 
+  // useEffect to set initial values
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    setIsMCQUnit(currentPath.includes('/MCQ'));
+    setIsCodingUnit(currentPath.includes('/CODING'));
+  }, []);
   // check answer and update progress
   const checkAnswer = (answer) => {
-    if (answer === question.answer) {
+    if (answer === question.answer.text) {
       setQuestionState('correct');
       quiz.incrementNumCorrect();
       quiz.incrementProgress();
     } else {
       setQuestionState('incorrect');
       quiz.incrementNumIncorrect();
-      quiz.decrementProgress();
+      quiz.incrementProgress();
     }
   };
 
@@ -117,36 +124,46 @@ const QuizPage = ({ quiz }) => {
 
       {/* Quiz Main */}
       {!quizComplete && (
-        <div className="w-full h-full my-2 flex flex-col md:grid justify-center items-center md:content-center">
-          <div className="w-full max-w-2xl md:w-[600px] h-full md:min-h-[450px] quiz-main-container gap-2 md:gap-6">
-            <h1 className="font-bold text-xl sm:text-2xl md:text-3xl">
-              <span>{question.questionDirection}</span>{' '}
-              <span>"{question.questionSubject}"</span>
-            </h1>
-            <div className="font-medium text-2xl sm:text-3xl md:text-4xl grid grid-cols-1 gap-2">
-              {question.choices.map((choice) => (
-                <button
-                  key={`id-${choice}`}
-                  type="button"
-                  className={`w-full h-full p-2 md:py-3 rounded-xl border-2 ${
-                    selectedOption === choice
-                      ? 'bg-sky-200 border-2 border-sky-400 dark:bg-sky-700'
-                      : `border-gray-300 dark:border-gray-700 ${
-                          !questionState && 'hover:bg-gray-200 dark:hover:bg-slate-800'
-                        }`
-                  }`}
-                  onClick={() => setSelectedOption(choice)}
-                  disabled={questionState}
-                >
-                  <div className="flex flex-col grow w-full">
-                    <span className="inline-flex justify-center items-center grow">{choice}</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
+  <div>
+    {isMCQUnit ? (
+       <div className="w-full h-full my-2 flex flex-col md:grid justify-center items-center md:content-center">
+      <div className="w-full max-w-2xl md:w-[600px] h-full md:min-h-[450px] quiz-main-container gap-2 md:gap-6">
+        <h1 className="font-bold text-xl sm:text-2xl md:text-3xl">
+          <span>{question.questionDirection}</span>{' '}
+          <span>"{question.questionSubject}"</span>
+        </h1>
+        <div className="font-medium text-2xl sm:text-3xl md:text-4xl grid grid-cols-1 gap-2">
+          {question.choices.map((choice) => (
+            <button
+              key={`id-${choice}`}
+              type="button"
+              className={`w-full h-full p-2 md:py-3 rounded-xl border-2 ${
+                selectedOption === choice
+                  ? 'bg-sky-200 border-2 border-sky-400 dark:bg-sky-700'
+                  : `border-gray-300 dark:border-gray-700 ${
+                      !questionState && 'hover:bg-gray-200 dark:hover:bg-slate-800'
+                    }`
+              }`}
+              onClick={() => setSelectedOption(choice)}
+              disabled={questionState}
+            >
+              <div className="flex flex-col grow w-full">
+                <span className="inline-flex justify-center items-center grow">{choice}</span>
+              </div>
+            </button>
+          ))}
         </div>
-      )}
+      </div>
+      </div>
+    ) : isCodingUnit ? (
+      <QuizMainContent />
+    ) : (
+      <div>
+        {/* Render content for other unit types */}
+      </div>
+    )}
+  </div>
+)}
 
       {/* Quiz Completion Screen */}
       {quizComplete && <CompleteScreen quiz={quiz} />}
@@ -178,7 +195,7 @@ const QuizPage = ({ quiz }) => {
                 // Feedback Message
                 <FeedbackMessage
                   questionState={questionState}
-                  answer={question.answer}
+                  answer={question.answer.text}
                 />
               )}
 

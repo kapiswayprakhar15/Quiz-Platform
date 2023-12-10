@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
@@ -18,9 +18,6 @@ const Dashboard = () => {
   // set the user's data to a variable
   const user = data?.me || {};
 
-  function onQuiz(){
-    console.log('quiz time');
-  }
   return (
     <section
       id="dashboard"
@@ -46,10 +43,6 @@ const Dashboard = () => {
 
       <h3 className="font-bold mb-4 text-xl">Lessons</h3>
       {/* Lessons */}
-
-      <div className="Quiz font-bold mb-4 text-xl">
-      <Link className='btn' to={'/quiz'} onClick={onQuiz}></Link>Quiz</div>
-      
       <div className="flex flex-col gap-4">
         {lessonData.map((lesson) => (
           <LessonContainer 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import countryLogo from '../assets/TrumioPeople.png';
+import Logo from '../assets/TrumioPeople.png';
 import Auth from '../utils/auth';
 
 const Home = () => {
@@ -42,10 +42,10 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        {/* Country Logo */}
+        {/*  Logo */}
         <img
-          src={countryLogo}
-          alt="Japan Country Logo"
+          src={Logo}
+          alt="  Logo"
           className="w-48 h-48 md:w-80 md:h-80 lg:w-[480px] lg:h-[480px] transition-all duration-300 ease-in-out"
         />
       </div>

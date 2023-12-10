@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 
-import { HiraganaChart, KatakanaChart, KanjiChart } from '../components';
-import { charBannerText } from '../constants/constants';
+// import { HiraganaChart, KatakanaChart, KanjiChart } from '../components';
+// import { charBannerText } from '../constants/constants';
 
 const Characters = () => {
   // If the user is not logged in, redirect to the login page
@@ -67,7 +67,7 @@ const Characters = () => {
             <Link
               to={`/quiz/${activeTab.toLowerCase()}`}
               className="w-full sm:w-fit px-8 py-4 font-bold text-lg text-center text-white dark:text-slate-800 bg-blue-500 hover:bg-blue-600 dark:bg-sky-400 dark:hover:bg-sky-500 rounded-xl"
-            >
+            > 
               Start {activeTab} Quiz
             </Link>
           </div>

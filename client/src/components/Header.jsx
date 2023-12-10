@@ -6,8 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { TOGGLE_DARKMODE } from '../features/darkMode/darkModeSlice';
 
 import logo from '../assets/TrumioLogo.png';
-import logoText from '../assets/SakuraStudyTextBlack.svg';
-import logoTextDarkMode from '../assets/SakuraStudyTextWhite.svg';
+
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 
 const Header = () => {

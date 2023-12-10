@@ -11,15 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kt946/Trumio-Ascend.git"
+    "url": "git+https://github.com/Trumio-Ascend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kt946/Trumio-Ascend/issues"
+    "url": "https://github.com/Trumio-Ascend/issues"
   },
-  "homepage": "https://github.com/kt946/Trumio-Ascend#readme",
+  "homepage": "https://github.com/Trumio-Ascend#readme",
   "devDependencies": {
     "concurrently": "^8.0.1"
+  },
+  "dependencies": {
+    "codemirror": "^6.0.1",
+    "react-helmet": "^6.1.0",
+    "react-scripts": "^5.0.1"
   }
 }
