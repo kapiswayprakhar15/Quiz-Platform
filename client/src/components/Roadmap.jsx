@@ -1,35 +1,37 @@
-import React, { useEffect } from 'react';
-import flowchart from 'flowchart.js';
+import React, { useEffect, useState } from 'react';
 
-const Roadmap = ({ roadmapData }) => {
+const Roadmap = () => {
+  const [roadmapData, setRoadmapData] = useState([]);
+
   useEffect(() => {
-    const generateRoadmapCode = (data) => {
-      let code = 'st=>start: Start\n';
-
-      data.forEach(({ Skill, Roadmap, Link }) => {
-        code += `${Skill}=>operation: ${Roadmap}\n`;
-        code += `${Skill}(link)->${Link}\n`;
-      });
-
-      code += 'e=>end: End\n';
-
-      return code;
-    };
-
-    const roadmapCode = generateRoadmapCode(roadmapData);
-
-    const diagram = flowchart.parse(roadmapCode);
-    const diagramContainer = document.getElementById('roadmap-container');
-    diagramContainer.innerHTML = '';
-    diagram.drawSVG('roadmap-container');
-  }, [roadmapData]);
+    // Fetch data from the server
+    fetch('http://localhost:3001/get-data')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // Check the fetched data in the console
+        setRoadmapData(data); // Set the fetched data to the state
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   return (
     <div>
       <h1>Your Roadmap</h1>
-      <div id="roadmap-container"></div>
+      <ul>
+      {roadmapData.map(({ Skill, Roadmap, Link }, index) => (
+  <li key={`${Skill}-${index}`}>
+    <strong>{Skill}</strong>: {Roadmap} - <a href={Link} target="_blank" rel="noopener noreferrer">Link</a>
+  </li>
+))}
+
+      </ul>
     </div>
   );
 };
 
 export default Roadmap;
+
+
+
+
+

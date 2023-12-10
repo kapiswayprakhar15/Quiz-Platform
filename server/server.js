@@ -1,61 +1,78 @@
 import express from 'express';
-import { ApolloServer } from 'apollo-server-express'; // import ApolloServer for GraphQL
+import { ApolloServer } from 'apollo-server-express';
 import * as dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import connectDB from './config/connection.js';
+import { typeDefs, resolvers } from './schemas/index.js';
+import { authMiddleware } from './utils/auth.js';
+import cors from 'cors';
 
-import connectDB from './config/connection.js'; // import connection to MongoDB
-import { typeDefs, resolvers } from './schemas/index.js'; // import typeDefs and resolvers
-import { authMiddleware } from './utils/auth.js'; // import authMiddleware for authentication
-
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const mongoUrl = 'mongodb+srv://2021ucs0106:9x6hM0egCSi4t5Qf@cluster0.hm3fpk3.mongodb.net/Roadmaps?retryWrites=true&w=majority';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Create a new instance of an Apollo server with the GraphQL schema
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware, // This ensures that every request performs an authentication check, and the updated request object will be passed to the resolvers as the context.
+  context: authMiddleware,
 });
 
-const app = express(); // Create a new instance of an Express server
-app.use(express.urlencoded({ extended: true })); // This sets up middleware to parse incoming requests with urlencoded payloads
-app.use(express.json()); // This sets up middleware to parse incoming requests with JSON payloads
+const app = express();
+app.use(cors()); // Enable CORS
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
-app.use(express.static(path.join(new URL('../client/dist', import.meta.url).pathname)));
+  app.use(express.static(path.join(new URL('../client/dist', import.meta.url).pathname)));
 }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(new URL('../client/dist/index.html', import.meta.url).pathname));
-});
+// Define your /get-data route before the wildcard route
+// ...
 
+let allData = []; // Global variable to store data
 
-const startServer = async (typeDefs, resolvers) => {
+app.get('/get-data', async (req, res) => {
   try {
-    await server.start(); // Start the Apollo server
-    server.applyMiddleware({ app }); // integrate our Apollo server with the Express application as middleware
-    connectDB(process.env.MONGODB_URI); // connect to MongoDB
     const client = await MongoClient.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to MongoDB');
 
     const db = client.db('Roadmaps');
-    const collection = db.collection('Javascript')
-    app.get('/get-data', async (req, res) => {
-      try {
-        const data = await collection.find({}).toArray();
-        res.json(data);
-      } catch (error) {
-        console.error('Error retrieving data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
-    });
-    process.on('SIGINT', () => {
-      client.close();
-      process.exit();
-    });
+    const collection = db.collection('Javascript');
+
+    allData = await collection.find({}).toArray();
+    res.json(allData);
+
+    client.close();
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('*', (req, res) => {
+  const indexPath = path.join(__dirname, '../client/index.html');
+  res.sendFile(indexPath);
+});
+
+// ...
+
+
+// Wildcard route for serving HTML
+// app.get('*', (req, res) => {
+//   const indexPath = path.join(__dirname, '../client/index.html');
+//   res.sendFile(indexPath);
+// });
+
+const startServer = async () => {
+  try {
+    await server.start();
+    server.applyMiddleware({ app });
+    connectDB(process.env.MONGODB_URI);
 
     app.listen(PORT, () => {
       console.log(`Server is running on port http://localhost:${PORT}`);
@@ -66,4 +83,4 @@ const startServer = async (typeDefs, resolvers) => {
   }
 };
 
-startServer(typeDefs, resolvers); // Start server
+startServer();
