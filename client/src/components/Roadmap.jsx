@@ -1,5 +1,5 @@
-// Place this in your src directory (e.g., src/Roadmap.jsx)
 import React, { useEffect } from 'react';
+import flowchart from 'flowchart.js';
 
 const Roadmap = ({ roadmapData }) => {
   useEffect(() => {
@@ -18,9 +18,10 @@ const Roadmap = ({ roadmapData }) => {
 
     const roadmapCode = generateRoadmapCode(roadmapData);
 
-    const roadmapContainer = document.getElementById('roadmap-container');
-    roadmapContainer.innerHTML = '';
-    roadmap.parse(roadmapCode).drawSVG('roadmap-container');
+    const diagram = flowchart.parse(roadmapCode);
+    const diagramContainer = document.getElementById('roadmap-container');
+    diagramContainer.innerHTML = '';
+    diagram.drawSVG('roadmap-container');
   }, [roadmapData]);
 
   return (
