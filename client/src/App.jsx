@@ -10,26 +10,26 @@ import { useSelector } from 'react-redux';
 import { MainSection } from './components';
 
 // This will connect to the server's GraphQL endpoint
-// const httpLink = createHttpLink({
-//   uri: '/graphql',
-// });
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
 
 // This will set the authorization header for the request
-// const authLink = setContext((_, { headers }) => {
-//   const token = localStorage.getItem('id_token');
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   };
-// });
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 // This will instantiate the Apollo Client instance and create the connection to the API endpoint
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
   // get darkMode state from store
@@ -45,14 +45,14 @@ function App() {
 
   return (
     // This will make the client available to all components
-    // <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
       <BrowserRouter>
         <div className="bg-gray-50 dark:bg-slate-900 text-slate-800 dark:text-gray-100">
           {/* Router and Routes are located in Main */}
           <MainSection />
         </div>
       </BrowserRouter>
-    // </ApolloProvider>
+    </ApolloProvider>
   );
 }
 
