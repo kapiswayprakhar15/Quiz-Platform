@@ -277,6 +277,47 @@ const Roadmap = ({ roadmapData }) => {
           </div>
         </div>
         </a>
+        <a href="https://javascript.info/async-await">
+        <div class="container left">
+          <i class="icon fa fa-cog"></i>
+          <div class="content">
+            <h2>async/await</h2>
+          </div>
+        </div>
+        </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">
+        <div class="container right">
+          <i class="icon fa fa-certificate"></i>
+          <div class="content">
+            <h2>ESModules</h2>
+          </div>
+        </div>
+        </a>
+        <a href="https://developer.chrome.com/docs/devtools/javascript/">
+        <div class="container left">
+          <i class="icon fa fa-certificate"></i>
+          <div class="content">
+            <h2>Debug Javascript</h2>
+          </div>
+        </div>
+        </a>
+        <a href="https://medium.com/coding-blocks/catching-memory-leaks-with-chrome-devtools-57b03acb6bb9">
+        <div class="container right">
+          <i class="icon fa fa-certificate"></i>
+          <div class="content">
+            <h2>Debugging using Chrome dev tools</h2>
+          </div>
+        </div>
+        </a>
+        <a href="https://www.w3schools.com/whatis/whatis_frontenddev.asp">
+        <div class="container left">
+          <i class="icon fa fa-certificate"></i>
+          <div class="content">
+            <h2>Frontend</h2>
+          </div>
+        </div>
+        </a>
+
       </div>
     </div>
   );
