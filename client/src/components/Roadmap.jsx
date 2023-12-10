@@ -226,69 +226,57 @@ const Roadmap = ({ roadmapData }) => {
           }
         `}
       </style>
-      
+
       <div id="roadmap-container"></div>
       <div class="timeline">
-        <div class="container left">
-          <div class="date">15 Dec</div>
-          <i class="icon fa fa-home"></i>
-          <div class="content">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            <p>
-              Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-            </p>
+        <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables">
+          <div class="container left">
+            <i class="icon fa fa-home"></i>
+            <div class="content">
+              <h2>All About Variables</h2>
+            </div>
           </div>
-        </div>
+        </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">
         <div class="container right">
-          <div class="date">22 Oct</div>
           <i class="icon fa fa-gift"></i>
           <div class="content">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            <p>
-              Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-            </p>
+            <h2>Datatypes in JS</h2>
           </div>
         </div>
+        </a>
+        <a href="https://www.w3schools.com/js/js_type_conversion.asp">
         <div class="container left">
-          <div class="date">10 Jul</div>
           <i class="icon fa fa-user"></i>
           <div class="content">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            <p>
-              Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-            </p>
+            <h2>Typecasting in JS</h2>
           </div>
         </div>
+        </a>
+        <a href="https://www.freecodecamp.org/news/how-to-loop-through-an-array-in-javascript-js-iterate-tutorial/">
         <div class="container right">
-          <div class="date">18 May</div>
           <i class="icon fa fa-running"></i>
           <div class="content">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            <p>
-              Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-            </p>
+            <h2>Loops and Iteration</h2>
           </div>
         </div>
+        </a>
+        <a href="https://developer.mozilla.org/en-US/docs/Glossary/Control_flow">
         <div class="container left">
-          <div class="date">10 Feb</div>
           <i class="icon fa fa-cog"></i>
           <div class="content">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            <p>
-              Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-            </p>
+            <h2>Control Flow</h2>
           </div>
         </div>
+        </a>
+        <a href="https://www.w3schools.com/js/js_strict.asp">
         <div class="container right">
-          <div class="date">01 Jan</div>
           <i class="icon fa fa-certificate"></i>
           <div class="content">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            <p>
-              Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-            </p>
+            <h2>Strict Mode</h2>
           </div>
         </div>
+        </a>
       </div>
     </div>
   );

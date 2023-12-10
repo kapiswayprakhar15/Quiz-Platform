@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
-
+ 
 import { LessonContainer } from '../components';
 import { lessonData } from '../data';
 

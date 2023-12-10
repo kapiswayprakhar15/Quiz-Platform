@@ -2,11 +2,11 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express'; // import ApolloServer for GraphQL
 import * as dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
-import path from 'path';
-
+import path from 'path'; 
 import connectDB from './config/connection.js'; // import connection to MongoDB
 import { typeDefs, resolvers } from './schemas/index.js'; // import typeDefs and resolvers
 import { authMiddleware } from './utils/auth.js'; // import authMiddleware for authentication
+import cors from 'cors';
 
 dotenv.config(); // Load environment variables from .env file
 

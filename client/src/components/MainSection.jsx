@@ -84,7 +84,7 @@ const MainSection = () => {
               path="/roadmap"
               element={<Roadmap roadmapData={roadmapData} />}
             />
-            <Route
+            <Route 
               path="*"
               element={<NoMatch />}
             />
