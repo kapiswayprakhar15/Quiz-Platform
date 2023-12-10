@@ -1,6 +1,6 @@
 // This contains the routes for the app and additional styling for the app depending on logged in state and path
-import { useEffect } from 'react';
-import { Header, Footer, Sidebar, MobileMenu } from '.';
+import { useEffect ,useState } from 'react';
+import { Header, Footer, Sidebar, MobileMenu ,Roadmap} from '.';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { Home, Login, Signup, NoMatch, Dashboard, Leaderboards, Profile, QuizPage } from '../pages';
@@ -8,6 +8,10 @@ import { Home, Login, Signup, NoMatch, Dashboard, Leaderboards, Profile, QuizPag
 import Auth from '../utils/auth';
 import {  VocabQuiz } from '../utils/quizGenerator';
 import {  lessonData } from '../data';
+const localroadmapData = [
+  { Skill: 'JS', Roadmap: 'All About Variables', Link: 'https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables' },
+  // Add more data as needed
+];
 
 const MainSection = () => {
   const loggedIn = Auth.loggedIn();
@@ -15,6 +19,7 @@ const MainSection = () => {
   const quizLocation = useLocation().pathname.includes('/quiz');
   
   const { pathname } = useLocation();
+  const [roadmapData, setroadmapData] = useState(localroadmapData);
 
   useEffect(() => {
     // Scroll to the top of the page on route change
@@ -75,6 +80,10 @@ const MainSection = () => {
                 ))}
               </Route>
             </Route>
+            <Route
+              path="/roadmap"
+              element={<Roadmap roadmapData={roadmapData} />}
+            />
             <Route
               path="*"
               element={<NoMatch />}

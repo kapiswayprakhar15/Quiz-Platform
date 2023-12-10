@@ -1,6 +1,7 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express'; // import ApolloServer for GraphQL
 import * as dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
 import path from 'path';
 
 import connectDB from './config/connection.js'; // import connection to MongoDB
@@ -10,6 +11,7 @@ import { authMiddleware } from './utils/auth.js'; // import authMiddleware for a
 dotenv.config(); // Load environment variables from .env file
 
 const PORT = process.env.PORT || 3001;
+const mongoUrl = 'mongodb+srv://2021ucs0106:9x6hM0egCSi4t5Qf@cluster0.hm3fpk3.mongodb.net/Roadmaps?retryWrites=true&w=majority';
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const server = new ApolloServer({
@@ -30,11 +32,31 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(new URL('../client/dist/index.html', import.meta.url).pathname));
 });
 
+
 const startServer = async (typeDefs, resolvers) => {
   try {
     await server.start(); // Start the Apollo server
     server.applyMiddleware({ app }); // integrate our Apollo server with the Express application as middleware
     connectDB(process.env.MONGODB_URI); // connect to MongoDB
+    const client = await MongoClient.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log('Connected to MongoDB');
+
+    const db = client.db('Roadmaps');
+    const collection = db.collection('Javascript')
+    app.get('/get-data', async (req, res) => {
+      try {
+        const data = await collection.find({}).toArray();
+        res.json(data);
+      } catch (error) {
+        console.error('Error retrieving data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
+    process.on('SIGINT', () => {
+      client.close();
+      process.exit();
+    });
+
     app.listen(PORT, () => {
       console.log(`Server is running on port http://localhost:${PORT}`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
