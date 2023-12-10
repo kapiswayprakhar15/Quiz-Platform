@@ -62,7 +62,7 @@ class QuizGenerator {
 
   // increment progress and check if complete
   incrementProgress() {
-    this.progress += 20;
+    this.progress += 10;
     if (this.progress >= 100) {
       this.progress = 100;
       this.endQuiz();
