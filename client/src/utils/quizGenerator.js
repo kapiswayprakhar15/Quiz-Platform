@@ -15,7 +15,39 @@ class QuizGenerator {
     this.startTime = new Date();
     this.endTime = null;
     this.elapsedTime = null;
+    this.addClipboardEventListeners();
+    this.addDragAndDropEventListeners();
+    this.addRightClickEventListener();
+
   }
+   // PREVENT COPY PASTE DRAG
+   addClipboardEventListeners() {
+    document.addEventListener('copy', this.preventClipboard);
+    document.addEventListener('cut', this.preventClipboard);
+    document.addEventListener('paste', this.preventClipboard);
+  }
+
+  addDragAndDropEventListeners() {
+    document.addEventListener('dragstart', this.preventDragAndDrop);
+    document.addEventListener('drop', this.preventDragAndDrop);
+  }
+
+  addRightClickEventListener() {
+    document.addEventListener('contextmenu', this.preventRightClick);
+  }
+
+  preventClipboard(e) {
+    e.preventDefault(); // Prevent copying, cutting, and pasting
+  }
+
+  preventDragAndDrop(e) {
+    e.preventDefault(); // Prevent drag and drop
+  }
+
+  preventRightClick(e) {
+    e.preventDefault(); // Prevent right-click
+  }
+
 
   /**
    * Retrieves the current progress of the quiz.
