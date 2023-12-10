@@ -41,7 +41,7 @@ const Dashboard = () => {
         <p>Select an exercise from a lesson to begin a quiz.</p>
       </div>
 
-      <h3 className="font-bold mb-4 text-xl">Lessons</h3>
+      <h3 className="font-bold mb-4 text-xl">Skills</h3>
       {/* Lessons */}
       <div className="flex flex-col gap-4">
         {lessonData.map((lesson) => (

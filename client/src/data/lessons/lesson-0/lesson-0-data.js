@@ -8,7 +8,7 @@ const lesson_0_data = {
       unitTitle: 'MCQ',
       unitUrl: 'MCQ',
       unitContent: [
-        // { character: '', meanings: '' },
+
         {
           question: 'Explain the differences between "memoization" and "dynamic programming," and provide examples of scenarios where each is more suitable.',
           options: [
